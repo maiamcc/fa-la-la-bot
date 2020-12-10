@@ -9,8 +9,8 @@ CONSUMER_SECRET = os.environ['TWITTER_API_SECRET_KEY']
 ACCESS_KEY = os.environ['TWITTER_ACCESS_TOKEN']
 ACCESS_SECRET = os.environ['TWITTER_ACCESS_TOKEN_SECRET']
 
-RT_RE = re.compile('^RT @\w+: ')
-URL_RE = re.compile('http.*?(\s|$)')
+RT_RE = re.compile(r'^RT @\w+: ')
+URL_RE = re.compile(r'http.*?(\s|$)')
 
 
 def clean_tweet(txt: str) -> str:
@@ -20,7 +20,7 @@ def clean_tweet(txt: str) -> str:
     """
     txt = maybe_rm_rt(txt)
     txt = maybe_rm_urls(txt)
-    return txt
+    return txt.strip()
 
 
 def maybe_rm_rt(txt: str) -> str:
